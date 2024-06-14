@@ -3,10 +3,10 @@ I've been trying to develop this in what little free time I've had recently: Enc
 
 each file is encrypted, and then the filename is appended with "crypt" on the end.
 
-Initial Commit:
+New Initial Commit:
 encrypt.py has a "root_dir" variable, this is the folder whose contents will be encrypted.
 decrypt.py does exactly what you think it does.
-
+filekey.key a fernet key as a flat file. ONLY USE THIS TO TEST WITH. THIS KEY IS PUBLIC, AND THEREFORE, ANYONE CAN DECRYPT YOUR FILES. To generate one of your own, go somewhere like fernetkeygen.com.
 
 
 TODO:
