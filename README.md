@@ -9,8 +9,8 @@ decrypt.py does exactly what you think it does.
 filekey.key a fernet key as a flat file. ONLY USE THIS TO TEST WITH. THIS KEY IS PUBLIC, AND THEREFORE, ANYONE CAN DECRYPT YOUR FILES. To generate one of your own, go somewhere like fernetkeygen.com.
 
 
-TODO:
-Create a script to delete the originals, if wanted (with warnings).
-Create one to delete the encrypted ones, so after upload, they can free the space if desired.
-Graphically allow user to choose folders for encrypt and decrypt.
-Be perhaps more verbose on the key creation/use.
+**TODO:**
+>Create a script to delete the originals, if wanted (with warnings).  
+>Create one to delete the encrypted ones, so after upload, they can free the space if desired.  
+>Graphically allow user to choose folders for encrypt and decrypt.  
+>Be perhaps more verbose on the key creation/use.
