@@ -1,34 +1,56 @@
+import os
 from cryptography.fernet import Fernet
-import os.path
+import tkinter as tk
+from tkinter import filedialog
 
-# opening the key
-with open('filekey.key', 'rb') as filekey:
+# Function to select a key file
+def select_file():
+    keyroot = tk.Tk()
+    keyroot.withdraw()
+    file_path = filedialog.askopenfilename()
+    return file_path
+
+# Select the key file at runtime
+keyfile_path = select_file()
+
+# Read the key from the selected file
+with open(keyfile_path, 'rb') as filekey:
     key = filekey.read()
 
-# using the generated key
-fernet = Fernet(key)
+def encrypt_files_in_folder(folder_path, key):
+    # Generate the encryption cipher using the provided key
+    cipher = Fernet(key)
+    
+    # Ensure the "encrypted" subdirectory exists
+    encrypted_folder = os.path.join(folder_path, 'encrypted')
+    os.makedirs(encrypted_folder, exist_ok=True)
+    
+    # Iterate over all files in the folder
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            file_path = os.path.join(root, file)
 
-root_dir = r"Z:\Photos"
+            # Read the contents of the file
+            with open(file_path, 'rb') as f:
+                file_data = f.read()
 
-for directory, subdirectories, files in os.walk(root_dir):
-    for file in files:
-        output1 = os.path.join(directory, file)
-        if output1.endswith("crypt"):
-            print(output1, " skipping")
-        else:
-            print(output1)
-            # opening the original file to encrypt
-            with open(output1, 'rb') as file1:
-                original = file1.read()
-                newname = ''.join(output1 + 'crypt')
-                if os.path.isfile(newname):
-                    print("ok")
-                else:
-                    # encrypting the file
-                    encrypted = fernet.encrypt(original)
+            # Encrypt the file data
+            encrypted_data = cipher.encrypt(file_data)
 
-                    # opening the file in write mode and
+            # Write the encrypted data to the "encrypted" subdirectory
+            encrypted_file_path = os.path.join(encrypted_folder, os.path.basename(file_path))
+            with open(encrypted_file_path, 'wb') as f:
+                f.write(encrypted_data)
 
-                    # writing the encrypted data
-                    with open(newname, 'xb') as encrypted_file:
-                        encrypted_file.write(encrypted)
+    print("Encryption complete!")
+
+def select_folder():
+    root = tk.Tk()
+    root.withdraw()
+    folder_path = filedialog.askdirectory()
+    return folder_path
+
+folder_path = select_folder()
+encryption_key = key
+
+encrypt_files_in_folder(folder_path, encryption_key)
