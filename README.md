@@ -13,4 +13,5 @@ filekey.key a fernet key as a flat file. ONLY USE THIS TO TEST WITH. THIS KEY IS
 ~~>Create a script to delete the originals, if wanted (with warnings).~~ Went with creating subfolder instead.
 >Create another script to delete the encrypted files after upload, so they can free the space if desired.  
 >Graphically allow user to choose folders for encrypt and decrypt.  -Halfway there.
+>
 >Be perhaps more verbose on the key creation/use.
