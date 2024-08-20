@@ -2,7 +2,7 @@
 I've been trying to develop this in what little free time I've had recently: Encrypting files in a folder at rest BEFORE transit. Why? Well, think about private things; family photos, genealogy, documents, etc.
 I feel like there are always going to be privacy concerns when transmitting/storing data ANYWHERE, including public cloud. I'm going to focus this toward S3 at some point, but now, in its infancy, this is brand-agnostic.
 
-**IMPORTANT** This project is really more for my own benefit; It's a lot about me growing as a developer and moving away from the MSP space. As such, I cannot stress to you enough: I'm not responsible for anything that comes from you using this application. I believe in it, it'll work, but I'm just not in a position to state that your data stays private using Fernet keys.
+**IMPORTANT** This project is really more for my own benefit; I'm trying to learn/develop more, and transition into a better role at work. As such, I cannot stress to you enough: I'm not responsible for anything that comes from you using this application. I believe in it, it'll work, but I'm just not in a position to state that your data stays private using Fernet keys.
 
 
 08/20/2024:
