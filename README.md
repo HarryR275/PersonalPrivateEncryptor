@@ -13,6 +13,7 @@ As of today, I'm creating the GUI for this in ui.py. Later, I'll be adding the e
 Good sized update here. The Encrypt side of the application is running pretty well. User can choose a single file or a folder.
 
 **TODO:**
+
 -The Folder encrypt/decrypt needs an option for the user to select recursive or no.
 
 -Make the forms close.
