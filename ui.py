@@ -1,4 +1,4 @@
-# Personal Private Encryptor. A simple GUI to encrypt and decrypt files and folders using fernet.
+# Personal Private Encryptor. A simple application to encrypt and decrypt files and folders using fernet.
 # https://github.com/HarryR275/PersonalPrivateEncryptor/tree/main
 # harryrdev@gmail.com
 
