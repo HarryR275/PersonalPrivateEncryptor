@@ -70,7 +70,6 @@ def enbutton2_click(key):
                 file_path = os.path.join(root, file)
                 if os.path.dirname(file_path) == os.path.join(folder_path, 'encrypted'):
                     continue
-                # Rest of the encryption logic goes here
 
                 # Read the contents of the file
                 with open(file_path, 'rb') as f:
@@ -93,7 +92,6 @@ def enbutton2_click(key):
 #----------------- DECRYPT WINDOW----------------#
 # Function to handle the decrypt button click
 def openDecryptWindow(key):
-     
     # Toplevel object which will 
     # be treated as a new window
     DecryptWindow = tk.Toplevel(window)
@@ -101,6 +99,84 @@ def openDecryptWindow(key):
     DecryptWindow.geometry("200x200")
     tk.Label(DecryptWindow, 
           text ="Decrypt Window").pack()
+        # Create the buttons
+    enbutton1 = tk.Button(DecryptWindow, text="Single File", command=lambda:debutton1_click(key))
+    enbutton2 = tk.Button(DecryptWindow, text="Entire Folder", command=lambda:debutton2_click(key))
+ 
+    # A Label widget to show in toplevel
+    tk.Label(DecryptWindow, 
+          text ="decrypt Window").pack()
+    
+    enbutton1.pack(pady=5)
+    enbutton2.pack()
+
+def debutton1_click(key):
+    file_path = filedialog.askopenfilename()
+    file_directory = os.path.dirname(file_path)
+    if file_path:
+        # Perform encryption logic using the selected file
+        print("Decrypting file:", file_path)
+        cipher = Fernet(key)
+    
+        # Ensure the "decrypted" subdirectory exists
+        decrypted_folder = os.path.join(file_directory, 'decrypted')
+        os.makedirs(decrypted_folder, exist_ok=True)
+
+        # Read the contents of the file
+        with open(file_path, 'rb') as f:
+            file_data = f.read()
+
+        # Encrypt the file data
+        decrypted_data = cipher.decrypt(file_data)
+
+        # Write the decrypted data to the "decrypted" subdirectory
+        decrypted_file_path = os.path.join(decrypted_folder, os.path.basename(file_path))
+        with open(decrypted_file_path, 'wb') as f:
+            f.write(decrypted_data)
+
+        print("Decryption complete!")
+    else:
+        print("No file selected.")
+
+def debutton2_click(key):
+    folder_path = filedialog.askdirectory()
+    if folder_path:
+        # Perform decryption logic using the selected file
+        cipher = Fernet(key)
+    
+        # Ensure the "decrypted" subdirectory exists
+        decrypted_folder = os.path.join(folder_path, 'decrypted')
+        os.makedirs(decrypted_folder, exist_ok=True)
+
+        # Iterate over all files in the folder
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                if os.path.dirname(file_path) == os.path.join(folder_path, 'decrypted'):
+                    continue
+
+                # Read the contents of the file
+                with open(file_path, 'rb') as f:
+                    file_data = f.read()
+
+                # Decrypt the file data
+                # Had to use a try except block here because fernet library throws an exception when the file is not encrypted.
+                print("Decrypting file:", file_path)
+                try:
+                    decrypted_data = cipher.decrypt(file_data)
+                except Exception as e:
+                    print("Error decrypting file:", file_path)
+                    print(e)
+                    continue
+
+                # Write the decrypted data to the "decrypted" subdirectory
+                decrypted_file_path = os.path.join(decrypted_folder, os.path.basename(file_path))
+                with open(decrypted_file_path, 'wb') as f:
+                    f.write(decrypted_data)
+
+        print("Decryption complete!")
+    else:
+        print("No folder selected.")
     #-----------------------------------------#
 
 #----------MAIN WINDOW-----------------------#
