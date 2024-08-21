@@ -8,6 +8,7 @@ I'm going to use the readme as a Changelog for now. Perhaps if this was a bigger
 
 08/20/2024:
 As of today, I'm creating the GUI for this in ui.py. Later, I'll be adding the encryption/decryption (what was initially multiple python files) but for now, ui.py is where everything will come together.
+
 08/21/2024:
 Good sized update here. The Encrypt side of the application is running pretty well. User can choose a single file or a folder.
 
