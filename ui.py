@@ -2,9 +2,9 @@
 # https://github.com/HarryR275/PersonalPrivateEncryptor/tree/main
 # harryrdev@gmail.com
 
+import tkinter.filedialog as filedialog
 import tkinter as tk
 import os
-import tkinter.filedialog as filedialog
 from cryptography.fernet import Fernet
 
 #----------------- ENCRYPT WINDOW----------------#
@@ -220,12 +220,12 @@ window.title("Personal Private Encryptor")
 window.geometry('350x200')
 
 def input():
-    input_path = tk.filedialog.askopenfilename()
+    input_path = filedialog.askopenfilename()
     input_entry.delete(1, tk.END)  # Remove current text in entry
     input_entry.insert(0, input_path)  # Insert the 'path'
 
 input_path = tk.Label(window, text="Key File:")
-input_entry = tk.Entry(window, text="", width=40)
+input_entry = tk.Entry(window, width=40)
 browse1 = tk.Button(window, text="Browse", command=input)
 
 # Create the buttons

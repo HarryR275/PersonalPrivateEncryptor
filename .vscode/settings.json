@@ -1,0 +1,6 @@
+{
+    "python.autoComplete.extraPaths": [],
+    "python.analysis.extraPaths": [],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true
+}
